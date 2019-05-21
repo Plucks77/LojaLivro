@@ -23,7 +23,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Página Inicial", "Index", "Cliente")</li>
                     <li>@Html.ActionLink("Comprar Livros", "Index", "Livro")</li>
-                    <li>@Html.ActionLink("Perfil","Perfil",Model.ID.ToString())</li>
+                    <li>@Html.ActionLink("Perfil","Perfil", "Cliente",  new { id=Model.ID },null)</li>
                     <li style="margin-left:40vw">@Html.ActionLink("Logoff", "index", "Home")</li>
                 </ul>
             </div>
