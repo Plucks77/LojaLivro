@@ -16,11 +16,18 @@ namespace Livro.View.Controllers
             return View(c);
         }
 
-        public ActionResult Perfil(Cliente c)
+
+        public ActionResult Perfil(string id)
         {
-            return View(c);
+            Cliente c = new Cliente();
+            c = (from p in db.Cliente where p.ID == int.Parse(id) select p).FirstOrDefault();
+            if (c != null)
+            {
+                return View(c);
+            }
+            return HttpNotFound();
         }
 
-        
+
     }
 }

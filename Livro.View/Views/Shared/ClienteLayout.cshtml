@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Admin</title>
+    <title>Cliente</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -23,7 +23,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Página Inicial", "Index", "Cliente")</li>
                     <li>@Html.ActionLink("Comprar Livros", "Index", "Livro")</li>
-                    <li>@Html.ActionLink("Perfil", "Perfil", "Cliente")</li>
+                    <li>@Html.ActionLink("Perfil","Perfil",Model.ID.ToString())</li>
                     <li style="margin-left:40vw">@Html.ActionLink("Logoff", "index", "Home")</li>
                 </ul>
             </div>
