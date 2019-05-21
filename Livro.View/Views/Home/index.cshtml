@@ -1,0 +1,35 @@
+﻿@model Livro.View.Models.Cliente
+
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/Login.cshtml";
+}
+
+    <div class="container-fluid">
+
+        @*@using (Html.BeginForm("VerificaAcesso", "Home", FormMethod.Post))
+        {
+
+            @Html.AntiForgeryToken()
+            <h3 style="text-align:center;">Identifique-se</h3>
+            <div class="row"> @Html.TextBoxFor(m => m.Login, new { @placeholder = "Login", @type = "text",     @style = "width:30%; margin-left:38%; text-align:center", @class="form-control" })</div>
+            <div class="row"> @Html.TextBoxFor(m => m.Senha, new { @placeholder = "Senha", @type = "password", @style = "width:30%; margin-left:38%; text-align:center", @class="form-control" })</div>
+
+            <div class="row"><br><input style="margin-left:auto; margin-right:auto;" type="submit" class="btn btn-lg btn-primary btn-block" value="Logar" /></div>
+        }*@
+
+
+        @using (Html.BeginForm("VerificaAcesso", "Home", FormMethod.Post))
+        {
+            <h3 style="text-align:center;">Faça o Login</h3>
+
+        <input style="margin-left:auto; margin-right:auto;" type="text" class="text-center form-control" placeholder="Login" name="rLogin" required /><br />
+        <input style="margin-left:auto; margin-right:auto;" type="password" class="text-center form-control" placeholder="Senha" name="rSenha" required /><br />
+
+
+
+        <input style="margin-left:auto; margin-right:auto;" type="submit" class="btn btn-lg btn-primary btn-block" value="Logar" />
+        }
+
+    </div>
+

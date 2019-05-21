@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="background-color:#1a1a1a; color:white;">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:midnightblue">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("Nome do aplicativo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse" style="background-color:midnightblue">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Página Inicial", "Index", "Admin")</li>
+                    <li>@Html.ActionLink("Controle de Livros", "Index", "Livro")</li>
+                    <li>@Html.ActionLink("Administradores", "Cadastro", "Admin")</li>
+                    <li style="margin-left:40vw">@Html.ActionLink("Logoff", "index", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

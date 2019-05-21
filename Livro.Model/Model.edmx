@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AspNetLivroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Senha" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Adm" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Livro">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Autor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Genero" Type="int" Nullable="false" />
+          <Property Name="Descricao" Type="varchar(max)" Nullable="false" />
+          <Property Name="Valor" Type="money" Nullable="false" />
+          <Property Name="Situation" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LivrosVendidos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDVenda" Type="int" Nullable="false" />
+          <Property Name="IDLivro" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Venda">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDCliente" Type="int" Nullable="false" />
+          <Property Name="Data" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_LivrosVendidos_Livro">
+          <End Role="Livro" Type="Self.Livro" Multiplicity="1" />
+          <End Role="LivrosVendidos" Type="Self.LivrosVendidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Livro">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LivrosVendidos">
+              <PropertyRef Name="IDLivro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LivrosVendidos_Venda">
+          <End Role="Venda" Type="Self.Venda" Multiplicity="1" />
+          <End Role="LivrosVendidos" Type="Self.LivrosVendidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venda">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LivrosVendidos">
+              <PropertyRef Name="IDVenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venda_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Venda" Type="Self.Venda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Venda">
+              <PropertyRef Name="IDCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AspNetLivroModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Livro" EntityType="Self.Livro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LivrosVendidos" EntityType="Self.LivrosVendidos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venda" EntityType="Self.Venda" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_LivrosVendidos_Livro" Association="Self.FK_LivrosVendidos_Livro">
+            <End Role="Livro" EntitySet="Livro" />
+            <End Role="LivrosVendidos" EntitySet="LivrosVendidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LivrosVendidos_Venda" Association="Self.FK_LivrosVendidos_Venda">
+            <End Role="Venda" EntitySet="Venda" />
+            <End Role="LivrosVendidos" EntitySet="LivrosVendidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venda_Cliente" Association="Self.FK_Venda_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Venda" EntitySet="Venda" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AspNetLivroModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Senha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Adm" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Venda" Relationship="Self.FK_Venda_Cliente" FromRole="Cliente" ToRole="Venda" />
+        </EntityType>
+        <EntityType Name="Livro">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Autor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Genero" Type="Int32" Nullable="false" />
+          <Property Name="Descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Valor" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Situation" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="LivrosVendidos" Relationship="Self.FK_LivrosVendidos_Livro" FromRole="Livro" ToRole="LivrosVendidos" />
+        </EntityType>
+        <EntityType Name="LivrosVendidos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDVenda" Type="Int32" Nullable="false" />
+          <Property Name="IDLivro" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Livro" Relationship="Self.FK_LivrosVendidos_Livro" FromRole="LivrosVendidos" ToRole="Livro" />
+          <NavigationProperty Name="Venda" Relationship="Self.FK_LivrosVendidos_Venda" FromRole="LivrosVendidos" ToRole="Venda" />
+        </EntityType>
+        <EntityType Name="Venda">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDCliente" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Venda_Cliente" FromRole="Venda" ToRole="Cliente" />
+          <NavigationProperty Name="LivrosVendidos" Relationship="Self.FK_LivrosVendidos_Venda" FromRole="Venda" ToRole="LivrosVendidos" />
+        </EntityType>
+        <Association Name="FK_Venda_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Venda" Type="Self.Venda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Venda">
+              <PropertyRef Name="IDCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LivrosVendidos_Livro">
+          <End Role="Livro" Type="Self.Livro" Multiplicity="1" />
+          <End Role="LivrosVendidos" Type="Self.LivrosVendidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Livro">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LivrosVendidos">
+              <PropertyRef Name="IDLivro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LivrosVendidos_Venda">
+          <End Role="Venda" Type="Self.Venda" Multiplicity="1" />
+          <End Role="LivrosVendidos" Type="Self.LivrosVendidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venda">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LivrosVendidos">
+              <PropertyRef Name="IDVenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AspNetLivroEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Livro" EntityType="Self.Livro" />
+          <EntitySet Name="LivrosVendidos" EntityType="Self.LivrosVendidos" />
+          <EntitySet Name="Venda" EntityType="Self.Venda" />
+          <AssociationSet Name="FK_Venda_Cliente" Association="Self.FK_Venda_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Venda" EntitySet="Venda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LivrosVendidos_Livro" Association="Self.FK_LivrosVendidos_Livro">
+            <End Role="Livro" EntitySet="Livro" />
+            <End Role="LivrosVendidos" EntitySet="LivrosVendidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LivrosVendidos_Venda" Association="Self.FK_LivrosVendidos_Venda">
+            <End Role="Venda" EntitySet="Venda" />
+            <End Role="LivrosVendidos" EntitySet="LivrosVendidos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AspNetLivroModelStoreContainer" CdmEntityContainer="AspNetLivroEntities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="AspNetLivroModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Adm" ColumnName="Adm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Livro">
+            <EntityTypeMapping TypeName="AspNetLivroModel.Livro">
+              <MappingFragment StoreEntitySet="Livro">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Situation" ColumnName="Situation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LivrosVendidos">
+            <EntityTypeMapping TypeName="AspNetLivroModel.LivrosVendidos">
+              <MappingFragment StoreEntitySet="LivrosVendidos">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDVenda" ColumnName="IDVenda" />
+                <ScalarProperty Name="IDLivro" ColumnName="IDLivro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venda">
+            <EntityTypeMapping TypeName="AspNetLivroModel.Venda">
+              <MappingFragment StoreEntitySet="Venda">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDCliente" ColumnName="IDCliente" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
