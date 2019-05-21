@@ -1,6 +1,6 @@
-﻿
+﻿@model  Livro.View.Models.Cliente
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/ClienteLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
 </head>
 <body>
     <div> 
-        <h1>Voce logou como cliente!</h1>
+        <h1>Bem vindo @Model.Nome!</h1><br>       
     </div>
 </body>
 </html>

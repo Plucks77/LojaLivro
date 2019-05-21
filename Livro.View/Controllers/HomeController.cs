@@ -36,7 +36,7 @@ namespace Livro.View.Controllers
                 }
                 if (x != null)
                 {
-                   return RedirectToAction("index", "Cliente");                    
+                   return RedirectToAction("index", "Cliente",x);                    
                     //return View("Views/Cliente/index.cshtml");
                 }
                 return View("erro");
