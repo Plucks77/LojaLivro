@@ -17,6 +17,8 @@ namespace Livro.View.Controllers
         }
 
 
+
+
         public ActionResult Perfil(int? id)
         {
             Cliente c = (from p in db.Cliente where p.ID == id select p).FirstOrDefault();

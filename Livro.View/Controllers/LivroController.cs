@@ -21,6 +21,11 @@ namespace Livro.View.Controllers
                 /*db.Livro.ToList()*/);
         }
 
+        public ActionResult Livros()
+        {
+            return View((from p in db.Livro where p.Situation == true select p).ToList());
+        }
+
         // GET: Livro/Details/5
         public ActionResult Details(int? id)
         {
