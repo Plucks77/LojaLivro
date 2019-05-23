@@ -31,11 +31,13 @@ namespace Livro.View.Controllers
             {
                 if (y != null)
                 {
+                    Session["ID"] = y.ID;
                    return RedirectToAction("index","Admin");
                    // return View("Views/Admin/index.cshtml");
                 }
                 if (x != null)
                 {
+                    Session["ID"] = x.ID;
                    return RedirectToAction("index", "Cliente",x);                    
                     //return View("Views/Cliente/index.cshtml");
                 }

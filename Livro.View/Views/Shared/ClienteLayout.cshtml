@@ -1,4 +1,4 @@
-﻿@model Livro.View.Models.Cliente
+﻿
 <!DOCTYPE html>
 
 <html>
@@ -23,7 +23,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Página Inicial", "Index", "Cliente")</li>
                     <li>@Html.ActionLink("Comprar Livros", "Livros", "Livro")</li>
-                    <li>@Html.ActionLink("Perfil","Perfil", "Cliente",  new { id=Model.ID },null)</li>
+                    <li>@Html.ActionLink("Perfil", "Perfil", "Cliente", new { id = Model.ID }, null)</li>
                     <li style="margin-left:40vw">@Html.ActionLink("Logoff", "index", "Home")</li>
                 </ul>
             </div>
