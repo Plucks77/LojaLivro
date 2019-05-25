@@ -13,13 +13,29 @@ namespace Livro.View.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            return View();
+            if (Session["AdminID"] != null)
+            {
+                return View();
+            }
+            return HttpNotFound();
         }
 
         public ActionResult Cadastro()
         {
-            
-            return View(db.Admin.ToList());
+            if (Session["AdminID"] != null)
+            {
+                return View(db.Admin.ToList());
+            }
+            return HttpNotFound();
+        }
+
+        public ActionResult Clientes()
+        {
+            if (Session["AdminID"] != null)
+            {
+                return View(db.Cliente.ToList());
+            }
+            return HttpNotFound();
         }
     }
 }

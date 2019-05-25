@@ -11,7 +11,9 @@ namespace Livro.View.Controllers
     {
         // GET: Login
         public ActionResult Index()
-        {
+        {            
+            Session["ClienteID"] = null;
+            Session["AdminNome"] = null;
             return View();
         }
 
@@ -31,14 +33,16 @@ namespace Livro.View.Controllers
             {
                 if (y != null)
                 {
-                    Session["ID"] = y.ID;
-                   return RedirectToAction("index","Admin");
+                    Session["AdminNome"] = y.Nome;
+                    Session["AdminID"] = y.ID;
+                    return RedirectToAction("index","Admin");
                    // return View("Views/Admin/index.cshtml");
                 }
                 if (x != null)
                 {
-                    Session["ID"] = x.ID;
-                   return RedirectToAction("index", "Cliente",x);                    
+                    Session["ClienteNome"] = x.Nome;
+                    Session["ClienteID"] = x.ID;                    
+                    return RedirectToAction("index", "Cliente",x);                    
                     //return View("Views/Cliente/index.cshtml");
                 }
                 return View("erro");

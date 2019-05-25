@@ -23,7 +23,11 @@ namespace Livro.View.Controllers
 
         public ActionResult Livros()
         {
-            return View((from p in db.Livro where p.Situation == true select p).ToList());
+            if (Session["ClienteID"] != null)
+            {
+                return View((from p in db.Livro where p.Situation == true select p).ToList());
+            }
+            return HttpNotFound();
         }
 
         // GET: Livro/Details/5

@@ -13,18 +13,26 @@ namespace Livro.View.Controllers
         // GET: Cliente
         public ActionResult Index(Cliente c)
         {
-            return View(c);
+            if (Session["ClienteID"] != null)
+            {
+                return View(c);
+            }
+            return HttpNotFound();
         }
 
 
 
 
-        public ActionResult Perfil(int? id)
+        public ActionResult Perfil()
         {
-            Cliente c = (from p in db.Cliente where p.ID == id select p).FirstOrDefault();
-            if (c != null)
+            if (Session["ClienteID"] != null)
             {
-                return View(c);
+                int k = int.Parse(Session["ClienteID"].ToString());
+                Cliente c = (from p in db.Cliente where p.ID == k select p).FirstOrDefault();
+                if (c != null)
+                {
+                    return View(c);
+                }
             }
             return HttpNotFound();
         }

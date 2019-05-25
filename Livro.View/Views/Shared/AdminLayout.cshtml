@@ -23,7 +23,9 @@
                     <li>@Html.ActionLink("Página Inicial", "Index", "Admin")</li>
                     <li>@Html.ActionLink("Controle de Livros", "Index", "Livro")</li>
                     <li>@Html.ActionLink("Administradores", "Cadastro", "Admin")</li>
-                    <li style="margin-left:40vw">@Html.ActionLink("Logoff", "index", "Home")</li>
+                    <li>@Html.ActionLink("Clientes", "Clientes", "Admin")</li>
+                    <li><button style="margin-top:14px" onclick="Muda_Cor_de_Fundo"> Teste </button></li>
+                    <li style="margin-left:30vw">@Html.ActionLink("Logoff", "index", "Home")</li>
                 </ul>
             </div>
         </div>
@@ -33,9 +35,9 @@
         <hr />
 
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/MudaCor.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>
