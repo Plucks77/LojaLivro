@@ -23,7 +23,7 @@ namespace Livro.Model
         public int ID { get; set; }
         public string Titulo { get; set; }
         public string Autor { get; set; }
-        public int Genero { get; set; }
+        public string Genero { get; set; }
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
         public bool Situation { get; set; }

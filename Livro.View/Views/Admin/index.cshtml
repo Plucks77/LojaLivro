@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable <Livro.Model.Cliente>
 @{
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
@@ -12,7 +12,36 @@
 </head>
 <body>
     <div> 
-        <h1>Logou como admin!</h1>
+        <h3>Bem vindo @Session["AdminNome"] !</h3>
     </div>
+    <br>
+    <h5>Lista de vendas</h5>
+    <table class="table">
+        <tr>
+            <td>
+                Nome do cliente
+            </td>
+
+            <td>
+                Quantidade de livros comprados
+            </td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Venda.Count)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+
+                </td>
+            </tr>
+        }
+    </table>
 </body>
 </html>

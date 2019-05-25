@@ -13,10 +13,10 @@ namespace Livro.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AspNetLivroEntities : DbContext
+    public partial class AspNetLivroEntities4 : DbContext
     {
-        public AspNetLivroEntities()
-            : base("name=AspNetLivroEntities")
+        public AspNetLivroEntities4()
+            : base("name=AspNetLivroEntities4")
         {
         }
     
@@ -25,6 +25,7 @@ namespace Livro.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Admin> Admin { get; set; }
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Livro> Livro { get; set; }
         public virtual DbSet<LivrosVendidos> LivrosVendidos { get; set; }

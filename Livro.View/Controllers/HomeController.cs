@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Livro.View.Models;
-
+using Livro.Model;
+using Livro.Model.Controller;
 namespace Livro.View.Controllers
 {
     public class HomeController : Controller
     {
+        CCliente _c;
+
+        public HomeController()
+        {
+            _c = new CCliente();
+        }
+
         // GET: Login
         public ActionResult Index()
         {            
@@ -20,7 +27,7 @@ namespace Livro.View.Controllers
         [HttpPost]
         public ActionResult VerificaAcesso(string rLogin, string rSenha)
         {
-            AspNetLivroEntities3 E = new AspNetLivroEntities3();
+            AspNetLivroEntities4 E = new AspNetLivroEntities4();
             Cliente x = new Cliente();
             Admin y = new Admin();
             x = (from p in E.Cliente where p.Login == rLogin && p.Senha == rSenha select p).FirstOrDefault();
@@ -47,6 +54,24 @@ namespace Livro.View.Controllers
                 }
                 return View("erro");
             }
+        }
+
+        public ActionResult Registrar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Registrar(Cliente oCliente)
+        {
+            if(oCliente != null)
+            {
+                Session["ClienteNome"] = oCliente.Nome;
+                Session["ClienteID"] = oCliente.ID;
+                _c.Incluir(oCliente);
+                return RedirectToAction("index","Cliente");
+            }
+            return View("CriarConta");
         }
     }
 }

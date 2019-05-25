@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Livro.View.Models
+namespace Livro.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class LivrosVendidos
+    public partial class Admin
     {
         public int ID { get; set; }
-        public int IDVenda { get; set; }
-        public int IDLivro { get; set; }
-    
-        public virtual Livro Livro { get; set; }
-        public virtual Venda Venda { get; set; }
+        public string Nome { get; set; }
+        public string Login { get; set; }
+        public string Senha { get; set; }
+        public string Email { get; set; }
+        public string Telefone { get; set; }
     }
 }

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Livro.View.Models;
+using Livro.Model;
 
 namespace Livro.View.Controllers
 {
     public class ClienteController : Controller
     {
-        AspNetLivroEntities3 db = new AspNetLivroEntities3();
+        AspNetLivroEntities4 db = new AspNetLivroEntities4();
         // GET: Cliente
         public ActionResult Index(Cliente c)
         {

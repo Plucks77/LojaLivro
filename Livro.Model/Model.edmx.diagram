@@ -4,11 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a724f3144b2c4e3e85511bf8e5af3087" Name="Diagram1">
+      <Diagram DiagramId="9d6aebd41bdb4f9e8c4a4845be3f7d5a" Name="Diagram1">
+        <EntityTypeShape EntityType="AspNetLivroModel.Admin" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AspNetLivroModel.Cliente" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="AspNetLivroModel.Livro" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AspNetLivroModel.LivrosVendidos" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="AspNetLivroModel.Venda" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AspNetLivroModel.LivrosVendidos" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AspNetLivroModel.Venda" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="AspNetLivroModel.FK_Venda_Cliente" ManuallyRouted="false" />
         <AssociationConnector Association="AspNetLivroModel.FK_LivrosVendidos_Livro" ManuallyRouted="false" />
         <AssociationConnector Association="AspNetLivroModel.FK_LivrosVendidos_Venda" ManuallyRouted="false" />

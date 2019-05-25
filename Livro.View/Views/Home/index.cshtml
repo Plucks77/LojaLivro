@@ -1,4 +1,4 @@
-﻿@model Livro.View.Models.Cliente
+﻿@model Livro.Model.Cliente
 
 @{
     ViewBag.Title = "index";
@@ -27,8 +27,9 @@
         <input style="margin-left:auto; margin-right:auto;" type="password" class="text-center form-control" placeholder="Senha" name="rSenha" required /><br />
 
 
-
+        
         <input style="margin-left:auto; margin-right:auto;" type="submit" class="btn btn-lg btn-primary btn-block" value="Logar" />
+       <br> <div style="margin-left:38vw; margin-right:auto;"> @Html.ActionLink("Crie sua conta!", "Registrar", "Home")</div>
         }
 
     </div>

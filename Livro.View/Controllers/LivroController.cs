@@ -6,13 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Livro.View.Models;
+using Livro.Model;
 
 namespace Livro.View.Controllers
 {
     public class LivroController : Controller
     {
-        private AspNetLivroEntities3 db = new AspNetLivroEntities3();
+        private AspNetLivroEntities4 db = new AspNetLivroEntities4();
 
         // GET: Livro
         public ActionResult Index()
@@ -37,7 +37,7 @@ namespace Livro.View.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }            
-            Livro.View.Models.Livro livro = db.Livro.Find(id);
+            Livro.Model.Livro livro = db.Livro.Find(id);
             if (livro == null)
             {
                 return HttpNotFound();
@@ -56,7 +56,7 @@ namespace Livro.View.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Titulo,Autor,Genero,Descricao,Valor,Situation")] Livro.View.Models.Livro livro)
+        public ActionResult Create([Bind(Include = "ID,Titulo,Autor,Genero,Descricao,Valor,Situation")] Livro.Model.Livro livro)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +76,7 @@ namespace Livro.View.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Livro.View.Models.Livro livro = db.Livro.Find(id);
+            Livro.Model.Livro livro = db.Livro.Find(id);
             if (livro == null)
             {
                 return HttpNotFound();
@@ -89,7 +89,7 @@ namespace Livro.View.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Titulo,Autor,Genero,Descricao,Valor,Situation")] Livro.View.Models.Livro livro)
+        public ActionResult Edit([Bind(Include = "ID,Titulo,Autor,Genero,Descricao,Valor,Situation")] Livro.Model.Livro livro)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +107,7 @@ namespace Livro.View.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Livro.View.Models.Livro livro = db.Livro.Find(id);
+            Livro.Model.Livro livro = db.Livro.Find(id);
             if (livro == null)
             {
                 return HttpNotFound();
@@ -120,7 +120,7 @@ namespace Livro.View.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Livro.View.Models.Livro livro = db.Livro.Find(id);
+            Livro.Model.Livro livro = db.Livro.Find(id);
             db.Livro.Remove(livro);
             db.SaveChanges();
             return RedirectToAction("Index");
