@@ -6,7 +6,11 @@
 }
 
 <h2>Livros Cadastrados</h2>
-
+<div class="form-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+    <input type="text" id="search" placeholder="Pesquise" class="form-control" />
+</div>
+<br>
 <p>
     @Html.ActionLink("Cadastrar Livro", "Create")
 </p>
@@ -67,3 +71,24 @@
 }
 
 </table>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function Contains(text_one, text_two) {
+            if (text_one.indexOf(text_two) != -1) {
+                return true;
+            }
+            $("#search").keyup(function () {
+                var searchText = $("#search").val().toLowerCase();
+                $(".search").each(function () {
+                    if (! Contains($(this).text().toLowerCase(), searchText)) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                })
+            })
+        }
+    })
+</script>
