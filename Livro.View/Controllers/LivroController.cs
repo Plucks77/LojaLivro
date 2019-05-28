@@ -7,13 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Livro.Model;
-
 namespace Livro.View.Controllers
 {
     public class LivroController : Controller
     {
         private AspNetLivroEntities4 db = new AspNetLivroEntities4();
-
+        Model.Controller.CLivro _c = new Model.Controller.CLivro();
         // GET: Livro
         public ActionResult Index()
         {
@@ -28,6 +27,22 @@ namespace Livro.View.Controllers
                 return View((from p in db.Livro where p.Situation == true select p).ToList());
             }
             return HttpNotFound();
+        }
+        [HttpPost]
+        public ActionResult Index(string Busca, string botao1)
+        {
+            if (botao1 == "Pesquisar")
+            {
+                List<Model.Livro> ll = _c.SelecionarPorTitulo(Busca);
+                return View(ll);
+            }
+            if (botao1 == "Limpar")
+            {
+                List<Model.Livro> ll = _c.SelecionarTodosDisponiveis();
+                return View(ll);
+            }
+            return View();
+
         }
 
         // GET: Livro/Details/5

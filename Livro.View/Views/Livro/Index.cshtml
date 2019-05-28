@@ -6,10 +6,14 @@
 }
 
 <h2>Livros Cadastrados</h2>
-<div class="form-group">
-    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-    <input type="text" id="search" placeholder="Pesquise" class="form-control" />
+@using (Html.BeginForm("index","Livro" ,method: FormMethod.Post))
+{
+<div class="form-group" method="post">
+    <div style="padding-left:0px" class="col-sm-3"> <input type="text" id="CampoPesquisa" placeholder="Nome do livro" class="form-control" name="Busca" /></div>
+    <div style="padding-left:0px" class="col-sm-1"><input type="submit" id="Enviar" value="Pesquisar" class="btn" name="botao1" style="width:90px;" /></div>
+    <div style="padding-left:0px" class="col-sm-8"><input type="submit" id="Enviar" value="Limpar" class="btn" name="botao1" style="width:90px;" /></div>
 </div>
+}
 <br>
 <p>
     @Html.ActionLink("Cadastrar Livro", "Create")
@@ -18,77 +22,49 @@
     <tr>
         <th>
             Título
-            @*@Html.DisplayNameFor(model => model.Titulo)*@
         </th>
         <th>
             Autor
-            @*@Html.DisplayNameFor(model => model.Autor)*@
         </th>
         <th>
             Gênero
-            @*@Html.DisplayNameFor(model => model.Genero)*@
         </th>
         <th>
             Descrição
-            @*@Html.DisplayNameFor(model => model.Descricao)*@
         </th>
         <th>
             Preço
-            @*@Html.DisplayNameFor(model => model.Valor)*@
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Situation)
-        </th>*@
+
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Autor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genero)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Valor)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Situation)
-        </td>*@
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Excluir", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script>
-    $(document).ready(function () {
-        function Contains(text_one, text_two) {
-            if (text_one.indexOf(text_two) != -1) {
-                return true;
-            }
-            $("#search").keyup(function () {
-                var searchText = $("#search").val().toLowerCase();
-                $(".search").each(function () {
-                    if (! Contains($(this).text().toLowerCase(), searchText)) {
-                        $(this).hide();
-                    }
-                    else {
-                        $(this).show();
-                    }
-                })
-            })
-        }
-    })
-</script>
+

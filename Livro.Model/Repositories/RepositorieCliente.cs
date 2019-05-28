@@ -32,5 +32,7 @@ namespace Livro.Model.Repositories
             e.Entry(oCliente).State = System.Data.Entity.EntityState.Deleted;
             e.SaveChanges();
         }
+
+
     }
 }
