@@ -6,8 +6,15 @@
 }
 
 <h2>Livros</h2>
-
-<p>    
+@using (Html.BeginForm("Livros", "Livro", method: FormMethod.Post))
+{
+    <div class="form-group" method="post">
+        <div style="padding-left:0px" class="col-sm-3"> <input type="text" id="CampoPesquisa" placeholder="Nome do livro" class="form-control" name="Busca" /></div>
+        <div style="padding-left:0px" class="col-sm-1"><input type="submit" id="Enviar" value="Pesquisar" class="btn" name="botao1" style="width:90px;" /></div>
+        <div style="padding-left:0px" class="col-sm-8"><input type="submit" id="Enviar" value="Limpar" class="btn" name="botao1" style="width:90px;" /></div>
+    </div>
+}
+<p>
 </p>
 <table class="table">
     <tr>
@@ -26,36 +33,33 @@
         <th>
             @Html.DisplayNameFor(model => model.Valor)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Situation)
-        </th>
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Autor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genero)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Valor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Situation)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            </td>
+        </tr>
+    }
 
 </table>

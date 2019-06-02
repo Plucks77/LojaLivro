@@ -28,6 +28,24 @@ namespace Livro.View.Controllers
             }
             return HttpNotFound();
         }
+
+        [HttpPost]
+        public ActionResult Livros(string Busca, string botao1)
+        {
+            if (botao1 == "Pesquisar")
+            {
+                List<Model.Livro> ll = _c.SelecionarPorTitulo(Busca);
+                return View(ll);
+            }
+            if (botao1 == "Limpar")
+            {
+                List<Model.Livro> ll = _c.SelecionarTodosDisponiveis();
+                return View(ll);
+            }
+            return View();
+
+        }
+
         [HttpPost]
         public ActionResult Index(string Busca, string botao1)
         {
