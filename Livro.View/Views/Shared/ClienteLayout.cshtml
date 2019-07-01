@@ -19,12 +19,14 @@
                 </button>
                 @*@Html.ActionLink("Nome do aplicativo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
-            <div class="navbar-collapse collapse" style="background-color:midnightblue">
+            <div class="navbar-collapse collapse" style="background-color:midnightblue">                
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Página Inicial", "Index", "Cliente")</li>
                     <li>@Html.ActionLink("Comprar Livros", "Livros", "Livro")</li>
                     <li>@Html.ActionLink("Perfil", "Perfil", "Cliente")</li>
-                    <li style="margin-left:40vw">@Html.ActionLink("Logout", "index", "Home")</li>
+                    <li>@Html.ActionLink("Carrinho", "Index", "Carrinho")</li>
+                    
+                    <li style="margin-left:40vw;">@Html.ActionLink("Logout", "index", "Home")</li>
                 </ul>
             </div>
         </div>

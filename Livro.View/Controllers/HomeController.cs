@@ -21,6 +21,8 @@ namespace Livro.View.Controllers
         {            
             Session["ClienteID"] = null;
             Session["AdminNome"] = null;
+            Session.Clear();
+            Session.Abandon();
             return View();
         }
 
@@ -48,7 +50,11 @@ namespace Livro.View.Controllers
                 if (x != null)
                 {
                     Session["ClienteNome"] = x.Nome;
-                    Session["ClienteID"] = x.ID;                    
+                    Session["ClienteID"] = x.ID;
+                    Model.Livro a = new Model.Livro();
+                    List<Model.Livro> b = new List<Model.Livro>();
+                    b.Add(a);
+                    Session["Carrinho"] = b;
                     return RedirectToAction("index", "Cliente",x);                    
                     //return View("Views/Cliente/index.cshtml");
                 }

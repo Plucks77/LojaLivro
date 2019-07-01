@@ -19,5 +19,20 @@ namespace Livro.Model.Controller
         {
             return R.SelecionarPorTitulo(titulo);
         }
+
+        public Livro SelecionarID(int id)
+        {
+            return R.SelecionarID(id);
+        }
+
+        public void Alterar(Livro oLivro)
+        {
+            R.Alterar(oLivro);
+        }
+
+        public void Desabilitar(int id)
+        {
+            R.Desabilitar(id);
+        }
     }
 }

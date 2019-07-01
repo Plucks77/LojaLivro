@@ -7,17 +7,23 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Livro.Model;
+
 namespace Livro.View.Controllers
 {
     public class LivroController : Controller
     {
         private AspNetLivroEntities4 db = new AspNetLivroEntities4();
         Model.Controller.CLivro _c = new Model.Controller.CLivro();
+
+        public LivroController()
+        {
+
+        }
+
         // GET: Livro
         public ActionResult Index()
         {
-            return View( (from p in db.Livro where p.Situation == true select p).ToList()
-                /*db.Livro.ToList()*/);
+            return View((from p in db.Livro where p.Situation == true select p).ToList());
         }
 
         public ActionResult Livros()
@@ -30,14 +36,14 @@ namespace Livro.View.Controllers
         }
 
         [HttpPost]
-        public ActionResult Livros(string Busca, string botao1)
+        public ActionResult Livros(string Busca, string botao)
         {
-            if (botao1 == "Pesquisar")
+            if (botao == "Pesquisar")
             {
                 List<Model.Livro> ll = _c.SelecionarPorTitulo(Busca);
                 return View(ll);
             }
-            if (botao1 == "Limpar")
+            if (botao == "Limpar")
             {
                 List<Model.Livro> ll = _c.SelecionarTodosDisponiveis();
                 return View(ll);
@@ -166,6 +172,16 @@ namespace Livro.View.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult AdicionarCarrinho(int id)
+        {
+            var lista = (List<Model.Livro>)Session["Carrinho"];
+            List<Model.Livro> x = lista;
+            Model.Livro vv = _c.SelecionarID(id);
+            lista.Add(vv);
+            Session["Carrinho"] = lista;
+            return RedirectToAction("Livros");
         }
     }
 }

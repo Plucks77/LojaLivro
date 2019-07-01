@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Livro.Model;
-
 namespace Livro.View.Controllers
 {
     public class ClienteController : Controller
@@ -15,7 +14,7 @@ namespace Livro.View.Controllers
         {
             if (Session["ClienteID"] != null)
             {
-                return View(c);
+                return View(c);                
             }
             return HttpNotFound();
         }
