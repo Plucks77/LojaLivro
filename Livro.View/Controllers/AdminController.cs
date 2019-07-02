@@ -17,7 +17,7 @@ namespace Livro.View.Controllers
             {
                 return View(db.Cliente.ToList());
             }
-            return HttpNotFound();
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Cadastro()
@@ -26,7 +26,7 @@ namespace Livro.View.Controllers
             {
                 return View(db.Admin.ToList());
             }
-            return HttpNotFound();
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Clientes()
@@ -35,7 +35,7 @@ namespace Livro.View.Controllers
             {
                 return View(db.Cliente.ToList());
             }
-            return HttpNotFound();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

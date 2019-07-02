@@ -23,6 +23,7 @@ namespace Livro.Model
         public int ID { get; set; }
         public int IDCliente { get; set; }
         public System.DateTime Data { get; set; }
+        public decimal ValorTotal { get; set; }
     
         public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

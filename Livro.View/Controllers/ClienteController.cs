@@ -16,7 +16,7 @@ namespace Livro.View.Controllers
             {
                 return View(c);                
             }
-            return HttpNotFound();
+            return RedirectToAction("Index","Home");
         }
 
 
@@ -33,7 +33,7 @@ namespace Livro.View.Controllers
                     return View(c);
                 }
             }
-            return HttpNotFound();
+            return RedirectToAction("Index", "Home");
         }
 
 

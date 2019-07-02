@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AspNetLivroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AspNetLivroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="ID" />
@@ -48,6 +48,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDVenda" Type="int" Nullable="false" />
           <Property Name="IDLivro" Type="int" Nullable="false" />
+          <Property Name="Valor" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="Venda">
           <Key>
@@ -56,6 +57,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDCliente" Type="int" Nullable="false" />
           <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="ValorTotal" Type="money" Nullable="false" />
         </EntityType>
         <Association Name="FK_LivrosVendidos_Livro">
           <End Role="Livro" Type="Self.Livro" Multiplicity="1" />
@@ -112,8 +114,7 @@
             <End Role="Venda" EntitySet="Venda" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AspNetLivroModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -164,6 +165,7 @@
           <Property Name="IDLivro" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Livro" Relationship="Self.FK_LivrosVendidos_Livro" FromRole="LivrosVendidos" ToRole="Livro" />
           <NavigationProperty Name="Venda" Relationship="Self.FK_LivrosVendidos_Venda" FromRole="LivrosVendidos" ToRole="Venda" />
+          <Property Name="Valor" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="Venda">
           <Key>
@@ -174,6 +176,7 @@
           <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK_Venda_Cliente" FromRole="Venda" ToRole="Cliente" />
           <NavigationProperty Name="LivrosVendidos" Relationship="Self.FK_LivrosVendidos_Venda" FromRole="Venda" ToRole="LivrosVendidos" />
+          <Property Name="ValorTotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
         </EntityType>
         <Association Name="FK_Venda_Cliente">
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
@@ -278,6 +281,7 @@
           <EntitySetMapping Name="LivrosVendidos">
             <EntityTypeMapping TypeName="AspNetLivroModel.LivrosVendidos">
               <MappingFragment StoreEntitySet="LivrosVendidos">
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="IDVenda" ColumnName="IDVenda" />
                 <ScalarProperty Name="IDLivro" ColumnName="IDLivro" />
@@ -287,6 +291,7 @@
           <EntitySetMapping Name="Venda">
             <EntityTypeMapping TypeName="AspNetLivroModel.Venda">
               <MappingFragment StoreEntitySet="Venda">
+                <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="IDCliente" ColumnName="IDCliente" />
                 <ScalarProperty Name="Data" ColumnName="Data" />

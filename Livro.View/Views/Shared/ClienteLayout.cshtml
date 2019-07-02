@@ -24,8 +24,7 @@
                     <li>@Html.ActionLink("Página Inicial", "Index", "Cliente")</li>
                     <li>@Html.ActionLink("Comprar Livros", "Livros", "Livro")</li>
                     <li>@Html.ActionLink("Perfil", "Perfil", "Cliente")</li>
-                    <li>@Html.ActionLink("Carrinho", "Index", "Carrinho")</li>
-                    
+                    <li>@Html.ActionLink(Session["QtdCarrinho"]+" Carrinho", "Index", "Carrinho")</li>
                     <li style="margin-left:40vw;">@Html.ActionLink("Logout", "index", "Home")</li>
                 </ul>
             </div>

@@ -23,7 +23,12 @@ namespace Livro.View.Controllers
         // GET: Livro
         public ActionResult Index()
         {
-            return View((from p in db.Livro where p.Situation == true select p).ToList());
+            if(Session["AdminID"] != null)
+            {
+               return View((from p in db.Livro where p.Situation == true select p).ToList());
+            }
+            return RedirectToAction("Index", "Home");
+
         }
 
         public ActionResult Livros()
@@ -32,13 +37,15 @@ namespace Livro.View.Controllers
             {
                 return View((from p in db.Livro where p.Situation == true select p).ToList());
             }
-            return HttpNotFound();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
         public ActionResult Livros(string Busca, string botao)
         {
-            if (botao == "Pesquisar")
+            if (Session["ClienteID"] != null)
+            {
+                if (botao == "Pesquisar")
             {
                 List<Model.Livro> ll = _c.SelecionarPorTitulo(Busca);
                 return View(ll);
@@ -49,13 +56,18 @@ namespace Livro.View.Controllers
                 return View(ll);
             }
             return View();
+            }
+            return RedirectToAction("Index", "Home");
+
 
         }
 
         [HttpPost]
         public ActionResult Index(string Busca, string botao1)
         {
-            if (botao1 == "Pesquisar")
+            if (Session["AdminID"] != null)
+            {
+               if (botao1 == "Pesquisar")
             {
                 List<Model.Livro> ll = _c.SelecionarPorTitulo(Busca);
                 return View(ll);
@@ -66,12 +78,18 @@ namespace Livro.View.Controllers
                 return View(ll);
             }
             return View();
+            }
+            return RedirectToAction("Index", "Home");
+
+
 
         }
 
         // GET: Livro/Details/5
         public ActionResult Details(int? id)
         {
+            if(Session["AdminID"] != null)
+            {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -82,12 +100,20 @@ namespace Livro.View.Controllers
                 return HttpNotFound();
             }
             return View(livro);
+            }
+            return RedirectToAction("Index", "Home");
+
         }
 
         // GET: Livro/Create
         public ActionResult Create()
         {
+            if(Session["AdminID"] != null)
+            {
             return View();
+            }
+            return RedirectToAction("Index", "Home");
+
         }
 
         // POST: Livro/Create
@@ -97,6 +123,8 @@ namespace Livro.View.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Titulo,Autor,Genero,Descricao,Valor,Situation")] Livro.Model.Livro livro)
         {
+            if(Session["AdminID"] != null)
+            {
             if (ModelState.IsValid)
             {
                 livro.Situation = true;
@@ -106,11 +134,16 @@ namespace Livro.View.Controllers
             }
 
             return View(livro);
+            }
+            return RedirectToAction("Index", "Home");
+
         }
 
         // GET: Livro/Edit/5
         public ActionResult Edit(int? id)
         {
+            if(Session["AdminID"] != null)
+            {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -121,6 +154,9 @@ namespace Livro.View.Controllers
                 return HttpNotFound();
             }
             return View(livro);
+            }
+            return RedirectToAction("Index", "Home");
+
         }
 
         // POST: Livro/Edit/5
@@ -130,6 +166,8 @@ namespace Livro.View.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Titulo,Autor,Genero,Descricao,Valor,Situation")] Livro.Model.Livro livro)
         {
+            if(Session["AdminID"] != null)
+            {
             if (ModelState.IsValid)
             {
                 db.Entry(livro).State = EntityState.Modified;
@@ -137,11 +175,16 @@ namespace Livro.View.Controllers
                 return RedirectToAction("Index");
             }
             return View(livro);
+            }
+            return RedirectToAction("Index", "Home");
+
         }
 
         // GET: Livro/Delete/5
         public ActionResult Delete(int? id)
         {
+            if(Session["AdminID"] != null)
+            {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -152,6 +195,9 @@ namespace Livro.View.Controllers
                 return HttpNotFound();
             }
             return View(livro);
+            }
+            return RedirectToAction("Index", "Home");
+
         }
 
         // POST: Livro/Delete/5
@@ -176,12 +222,28 @@ namespace Livro.View.Controllers
 
         public ActionResult AdicionarCarrinho(int id)
         {
+            if(Session["ClienteID"] != null)
+            {
             var lista = (List<Model.Livro>)Session["Carrinho"];
-            List<Model.Livro> x = lista;
+            //List<Model.Livro> x = lista;
             Model.Livro vv = _c.SelecionarID(id);
             lista.Add(vv);
             Session["Carrinho"] = lista;
+            int x;
+            if (Session["QtdCarrinho"] is null)
+            {
+                x = 0;
+            }
+            else
+            {
+                x = int.Parse(Session["QtdCarrinho"].ToString());
+            }
+            x++;
+            Session["QtdCarrinho"] = x;
             return RedirectToAction("Livros");
+            }
+            return RedirectToAction("Index", "Home");
+
         }
     }
 }

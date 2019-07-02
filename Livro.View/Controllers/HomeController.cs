@@ -73,8 +73,14 @@ namespace Livro.View.Controllers
             if(oCliente != null)
             {
                 Session["ClienteNome"] = oCliente.Nome;
-                Session["ClienteID"] = oCliente.ID;
+                
+                Session["QtdCarrinho"] = null;
+                Model.Livro a = new Model.Livro();
+                List<Model.Livro> b = new List<Model.Livro>();
+                b.Add(a);
+                Session["Carrinho"] = b;
                 _c.Incluir(oCliente);
+                Session["ClienteID"] = oCliente.ID;
                 return RedirectToAction("index","Cliente");
             }
             return View("CriarConta");

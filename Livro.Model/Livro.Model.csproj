@@ -58,6 +58,8 @@
     </Compile>
     <Compile Include="Controller\CCliente.cs" />
     <Compile Include="Controller\CLivro.cs" />
+    <Compile Include="Controller\CLivrosVendidos.cs" />
+    <Compile Include="Controller\CVenda.cs" />
     <Compile Include="Livro.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -82,6 +84,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\RepositorieCliente.cs" />
     <Compile Include="Repositories\RepositorieLivro.cs" />
+    <Compile Include="Repositories\RepositorieLivrosVendidos.cs" />
+    <Compile Include="Repositories\RepositorieVenda.cs" />
     <Compile Include="Venda.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

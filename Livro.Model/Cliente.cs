@@ -19,7 +19,7 @@ namespace Livro.Model
         {
             this.Venda = new HashSet<Venda>();
         }
-
+    
         public int ID { get; set; }
         public string Nome { get; set; }
         public string Login { get; set; }
@@ -28,9 +28,8 @@ namespace Livro.Model
         public string Email { get; set; }
         public string Endereco { get; set; }
         public string CPF { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Venda> Venda { get; set; }
-
     }
 }

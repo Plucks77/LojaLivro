@@ -17,6 +17,7 @@ namespace Livro.Model
         public int ID { get; set; }
         public int IDVenda { get; set; }
         public int IDLivro { get; set; }
+        public decimal Valor { get; set; }
     
         public virtual Livro Livro { get; set; }
         public virtual Venda Venda { get; set; }
