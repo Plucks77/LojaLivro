@@ -36,7 +36,7 @@ namespace Livro.View.Controllers
             y = (from p in E.Admin where p.Login == rLogin && p.Senha == rSenha select p).FirstOrDefault();
             if (x == null && y == null)
             {
-                return View("erro");
+                return View("Index");
             }
             else
             {
@@ -44,8 +44,7 @@ namespace Livro.View.Controllers
                 {
                     Session["AdminNome"] = y.Nome;
                     Session["AdminID"] = y.ID;
-                    return RedirectToAction("index","Admin");
-                   // return View("Views/Admin/index.cshtml");
+                    return RedirectToAction("index","Admin");                   
                 }
                 if (x != null)
                 {
@@ -55,8 +54,7 @@ namespace Livro.View.Controllers
                     List<Model.Livro> b = new List<Model.Livro>();
                     b.Add(a);
                     Session["Carrinho"] = b;
-                    return RedirectToAction("index", "Cliente",x);                    
-                    //return View("Views/Cliente/index.cshtml");
+                    return RedirectToAction("index", "Cliente",x);                                        
                 }
                 return View("erro");
             }
